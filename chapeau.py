@@ -1,6 +1,6 @@
 import socket
 import types
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 #------- Receive messages from Clients ----------
 def listen(clientsocket):
@@ -26,7 +26,7 @@ def get(clientsocket, request):
 			return render(clientsocket, path, params)
 	elif request['path'][-4:] == '.css':
 		path = request['path'][1:]
-		print path
+		print(path)
 		return style_render(clientsocket, path)
 	else:
 		clientsocket.send('HTTP/1.0 404 \n\n')
@@ -114,7 +114,7 @@ def parse_function(data):
 			data_value = data[start_of_input:]
 			data = ''
 		data_value = data_value.replace('+', ' ')
-		parsed_data[data_key] = urllib.unquote(data_value)
+		parsed_data[data_key] = urllib.parse.unquote(data_value)
 	return parsed_data #returns a dictionary
 
 routing_dictionary = {}

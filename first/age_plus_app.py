@@ -1,7 +1,7 @@
 import chapeau
 
 def age_plus_five(request, client):
-	print request
+	print(request)
 	my_dict = request['body']
 	if 'age' in my_dict:
 		my_dict['age'] = int(my_dict['age']) + 5

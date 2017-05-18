@@ -3,14 +3,14 @@ import chapeau
 user_answers = {}
 
 def first(request, client):
-	if 'question1' in request['body'].keys():
+	if 'question1' in list(request['body'].keys()):
 		header = {'Set-Cookie': 'question1=%s' %request['body']['question1']}
 		chapeau.render(client, 'views/question_2.html', user_answers, header)
 	else:
 		chapeau.render(client, 'views/question_1.html', user_answers)
 
 def second(request, client):
-	if 'question2' in request['body'].keys():
+	if 'question2' in list(request['body'].keys()):
 		header = {'Set-Cookie': 'question2=%s' %request['body']['question2']}
 		chapeau.render(client, 'views/question_3.html', user_answers, header)
 	else:
@@ -18,7 +18,7 @@ def second(request, client):
 
 
 def third(request, client):
-	if 'question3' in request['body'].keys():
+	if 'question3' in list(request['body'].keys()):
 		cookies = request['headers']['Cookie'].split('; ')
 		for cookie in cookies:
 			temp = cookie.split('=')
